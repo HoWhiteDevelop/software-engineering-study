@@ -1,1 +1,1 @@
-# oftware-engineering-study
+# software-engineering-study
