@@ -130,11 +130,3 @@ public
 # Ignore Goland IDE settings
 .idea
 
-# Custom project-specific ignores
-/conf/config.go
-/tmp
-/tmp_images
-/bindata
-*.exe
-*.exe~
-.air.toml
