@@ -127,6 +127,13 @@ public
 .yarn/install-state.gz
 .pnp.*
 
-# Ignore Goland IDE settings
+# go-gin-chat
 .idea
+/conf/config.go
+/tmp
+/tmp_images
+/bindata
+*.exe
+*.exe~
+.air.toml
 
