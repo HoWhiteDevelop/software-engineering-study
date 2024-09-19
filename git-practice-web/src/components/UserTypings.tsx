@@ -5,12 +5,14 @@ const UserTypings = ({
   userInfo: string;
   className?: string;
 }) => {
-  const typeCharacter = userInfo.replace(/ /g, "\u00A0").split("");
+  //此正则替换的方法亦会导致更严重的不兼容，随机的英文字词被割裂
+  //const typeCharacter = userInfo.replace(/ /g, "\u00A0").split("");
+  const typeCharacter = userInfo.split('');
   console.log(typeCharacter);
   return (
     <div className={className}>
       {typeCharacter.map((item, index) => (
-        <span key={index}>{item}</span>
+        <span key={`${index}_${item}`}>{item}</span>
       ))}
     </div>
   );

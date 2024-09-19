@@ -11,11 +11,13 @@ function App() {
   return (
     <div>
       <TimeLeftReminder timeLeft={20} />
-      <GenerateRandom words={words} />
-      <UserTypings
-        userInfo={"he llo"}
-        className={"flex flex-row items-center text-primary-400 mt-10"}
-      />
+      <div className=" relative text-3xl max-w-xl leading-relaxed break-all">
+        <GenerateRandom words={words} />
+        <UserTypings
+          userInfo={words}
+          className={" absolute inset-0 text-red-500"}
+        />
+      </div>
       <RestartButton
         className={"m-auto text-slate-500"}
         onRestart={() => {
@@ -33,7 +35,7 @@ function App() {
 }
 
 const GenerateRandom = ({ words }: { words: string }) => {
-  return <div className=" text-slate-500 text-4xl">words:{words}</div>;
+  return <div className=" text-slate-400">{words}</div>;
 };
 const TimeLeftReminder = ({ timeLeft }: { timeLeft: number }) => {
   return <div className=" text-primary-500 text-xl">time:{timeLeft}</div>;

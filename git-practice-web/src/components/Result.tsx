@@ -41,7 +41,7 @@ const Result = ({
         initial={initial}
         animate={animate}
         transition={{ ...duration, delay: 1.0 }}
-        className=" text-red-500"
+        className=" text-red-600 brightness-200"
       >
         Errors:{errors}
       </motion.li>
