@@ -5,13 +5,14 @@ const UserTypings = ({
     userInfo:string,
     className?:string
 })=>{
-    const typeCharacter = userInfo.split(' ')
-    console.log(typeCharacter,1)
+    const typeCharacter = userInfo.replace(/ /g,'\u00A0').split('')
+    console.log(typeCharacter)
     return(
-        <div className={`${className} bg-slate-600`}>
-            Hello HoWhite 
-            <br />
-            Hello World 
+        <div className={className}>
+            {typeCharacter.map((item, index) => (
+                <span key={index}>{item}</span>
+            ))} 
+            
         </div>
     )
 }

@@ -2,10 +2,10 @@ import {motion} from "framer-motion"
 import { formatPercentage } from "../utils/helpers";
 
 interface ModuleResult{
-    errors?:number,
-    accuracyPercentage?:number,
-    total?:number,
-    className?:string
+    errors:number,
+    accuracyPercentage:number,
+    total:number,
+    className:string
 }
 
 const Result = ({
@@ -19,10 +19,11 @@ const Result = ({
     const duration = {duration:6};
 
     return (
-        <motion.ul className={`${className} flex flex-col items-center text-primary-400 space-y-3`}>
+        <motion.ul className={`${className} flex flex-col items-center text-primary-400 space-y-4`}>
            <motion.li
             initial={initial}
             animate={animate}
+            //必须...duration展开对象,否则delay无法与duration:6处在一个对象体之中
             transition={{...duration, delay:0}}
            >Result</motion.li>
            <motion.li
@@ -35,12 +36,12 @@ const Result = ({
            animate={animate}
            transition={{...duration, delay:1.0}}
            className=" text-red-500"
-           >errors:{errors}</motion.li>
+           >Errors:{errors}</motion.li>
            <motion.li
            initial={initial}
            animate={animate}
-           transition={{...duration, delay:1.3}}
-           >total:{total}</motion.li>
+           transition={{...duration, delay:1.4}}
+           >Total:{total}</motion.li>
         </motion.ul>
     )
 }

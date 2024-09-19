@@ -13,15 +13,16 @@ function App() {
   <div>
     <TimeLeftReminder timeLeft={20}/>
     <GenerateRandom words={words}/> 
+    <UserTypings userInfo={"he llo"} className={"flex flex-row items-center text-primary-400 mt-10"}/>
     <RestartButton 
-    className={" m-auto text-slate-500"} 
+    className={"m-auto text-slate-500"} 
     onRestart = {()=>{null}}/>
     <Result 
     errors={90}
     accuracyPercentage={75}
     total={100}
     className={"mt-10"}/>
-    <UserTypings userInfo={"HoWhite Developer"} className={"flex flex-col items-center text-primary-400 mt-10"}/>
+   
   </div>
 )}
 
