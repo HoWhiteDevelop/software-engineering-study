@@ -14,7 +14,7 @@ function App() {
       <div className=" relative text-3xl max-w-xl leading-relaxed break-all">
         <GenerateRandom words={words} />
         <UserTypings
-          userInfo={words}
+          userInfo={"Safe only"}
           className={" absolute inset-0 text-red-500"}
         />
       </div>

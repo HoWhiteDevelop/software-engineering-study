@@ -1,3 +1,5 @@
+import Caret from "./Caret";
+
 const UserTypings = ({
   userInfo,
   className,
@@ -14,6 +16,7 @@ const UserTypings = ({
       {typeCharacter.map((item, index) => (
         <span key={`${index}_${item}`}>{item}</span>
       ))}
+      <Caret></Caret>
     </div>
   );
 };
