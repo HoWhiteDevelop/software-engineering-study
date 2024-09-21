@@ -3,6 +3,7 @@ package img_freeimage
 import (
 	"bytes"
 	"encoding/json"
+	"git-practice-api/go-gin-chat/result"
 	"git-practice-api/go-gin-chat/services"
 	"github.com/valyala/fasthttp"
 	"io"
@@ -31,20 +32,20 @@ func Upload(uploadFile string) string {
 	fileWriter, err := bodyWriter.CreateFormFile("source", path.Base(uploadFile))
 
 	if err != nil {
-		log.Println(err)
+		result.Failture(result.APIcode.FileWirteError, result.APIcode.GetMessage(result.APIcode.LoadFileError), nil, &err)
 		return ""
 	}
 
 	file, err2 := os.Open(uploadFile)
 	if err2 != nil {
-		log.Println(err2)
+		result.Failture(result.APIcode.OpenFileError, result.APIcode.GetMessage(result.APIcode.OpenFileError), nil, &err2)
 		return ""
 	}
 	//不要忘记关闭打开的文件
 	defer file.Close()
 	_, err3 := io.Copy(fileWriter, file)
 	if err3 != nil {
-		log.Println(err3)
+		result.Failture(result.APIcode.CopyFileError, result.APIcode.GetMessage(result.APIcode.CopyFileError), nil, &err3)
 		return ""
 	}
 

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"fmt"
+	"git-practice-api/go-gin-chat/result"
 	"git-practice-api/go-gin-chat/services/img_upload_connector"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -12,7 +12,7 @@ import (
 func ImgKrUpload(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("get form err: %s", err.Error()))
+		result.Failture(result.APIcode.ImgKrUploadError, result.APIcode.GetMessage(result.APIcode.ImgKrUploadError), c, &err)
 		return
 	}
 
@@ -27,7 +27,7 @@ func ImgKrUpload(c *gin.Context) {
 	filename := filepath + file.Filename
 
 	if err := c.SaveUploadedFile(file, filename); err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
+		result.Failture(result.APIcode.LoadFileError, result.APIcode.GetMessage(result.APIcode.ImgKrUploadError), c, &err)
 		return
 	}
 

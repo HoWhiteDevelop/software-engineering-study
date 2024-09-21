@@ -2,6 +2,7 @@ package user_service
 
 import (
 	"git-practice-api/go-gin-chat/models"
+	"git-practice-api/go-gin-chat/result"
 	"git-practice-api/go-gin-chat/services/helper"
 	"git-practice-api/go-gin-chat/services/session"
 	"git-practice-api/go-gin-chat/services/validator"
@@ -27,10 +28,7 @@ func Login(c *gin.Context) {
 		// json 用户存在
 		// 验证密码
 		if userInfo.Password != md5Pwd {
-			c.JSON(http.StatusOK, gin.H{
-				"code": 5000,
-				"msg":  "密码错误",
-			})
+			result.Failture(result.APIcode.PasswordError, result.APIcode.GetMessage(result.APIcode.PasswordError), c, nil)
 			return
 		}
 
@@ -47,15 +45,10 @@ func Login(c *gin.Context) {
 
 	if userInfo.ID > 0 {
 		session.SaveAuthSession(c, string(strconv.Itoa(int(userInfo.ID))))
-		c.JSON(http.StatusOK, gin.H{
-			"code": 0,
-		})
+		result.Success("注册成功", c)
 		return
 	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"code": 5001,
-			"msg":  "系统错误",
-		})
+		result.Failture(result.APIcode.SystemError, result.APIcode.GetMessage(result.APIcode.SystemError), c, nil)
 		return
 	}
 }

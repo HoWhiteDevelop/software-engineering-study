@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"git-practice-api/go-gin-chat/result"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/url"
@@ -21,7 +22,8 @@ func start() {
 	c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
 
 	if err != nil {
-		log.Fatal("dial:", err)
+
+		result.Failture(result.APIcode.DialError, result.APIcode.GetMessage(result.APIcode.DialError), nil, &err)
 	}
 	defer c.Close()
 
@@ -47,7 +49,7 @@ func start() {
 	for {
 		_, message, err := c.ReadMessage()
 		if err != nil {
-			log.Println("read:", err)
+			result.Failture(result.APIcode.ReadError, result.APIcode.GetMessage(result.APIcode.ReadError), nil, &err)
 			break
 		}
 		log.Printf("recv: %s", message)

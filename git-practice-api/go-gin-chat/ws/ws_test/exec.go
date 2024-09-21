@@ -1,6 +1,7 @@
 package main
 
 import (
+	"git-practice-api/go-gin-chat/result"
 	"log"
 	"os/exec"
 	"strconv"
@@ -42,7 +43,7 @@ func execCommand(i int) {
 	err := cmd.Start()
 
 	if err != nil {
-		log.Println(err)
+		result.Failture(result.APIcode.CmdStartError, result.APIcode.GetMessage(result.APIcode.CmdStartError), nil, &err)
 	}
 
 	log.Println(i)
